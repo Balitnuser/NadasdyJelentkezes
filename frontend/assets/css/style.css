@@ -1,0 +1,282 @@
+/* =========================================================
+   Nyílt napi jelentkezés – stíluslap
+   Tabletre tervezve (768–1366 px), telefonon is használható.
+
+   Színek: a Nádasdy-logó kék árnyalatai.
+   ========================================================= */
+
+:root {
+    --primary: #17388f;        /* logó sötétkék */
+    --primary-dark: #0f2766;
+    --primary-light: #eaf0fb;
+    --accent: #3b6fd1;         /* logó világoskék */
+
+    --bg: #f3f4f6;
+    --surface: #ffffff;
+    --text: #1f2937;
+    --muted: #6b7280;
+    --line: #d1d5db;
+    --line-light: #e5e7eb;
+    --danger: #b42318;
+    --danger-light: #fef3f2;
+    --ok: #157f3b;
+
+    --radius: 6px;
+    --touch: 52px;
+    --font: "Source Sans 3", "Segoe UI", Arial, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+    margin: 0;
+    font-family: var(--font);
+    font-size: 18px;
+    line-height: 1.5;
+    color: var(--text);
+    background: var(--bg);
+}
+[hidden] { display: none !important; }
+h1, h2, h3 { margin: 0; line-height: 1.25; font-weight: 700; }
+p { margin: 0; }
+button, input, select { font: inherit; color: inherit; }
+:focus-visible { outline: 3px solid var(--primary); outline-offset: 2px; }
+
+.container { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+.container.narrow { max-width: 560px; }
+
+/* ---------- Fejléc ---------- */
+.site-head { background: var(--surface); border-top: 5px solid var(--primary); border-bottom: 1px solid var(--line-light); }
+.site-head-inner { max-width: 1200px; margin: 0 auto; padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.brand { display: flex; align-items: center; gap: 14px; text-decoration: none; color: var(--text); }
+.logo { height: 56px; width: auto; display: block; }
+.logo-placeholder {
+    width: 56px; display: grid; place-items: center;
+    height: 56px; background: var(--primary); color: #fff; font-weight: 700; font-size: 20px; border-radius: 50%;
+}
+.brand-name { font-size: 20px; font-weight: 700; color: var(--primary-dark); line-height: 1.2; }
+
+.site-foot { margin-top: 48px; padding: 20px 0; border-top: 1px solid var(--line-light); background: var(--surface); font-size: 15px; color: var(--muted); }
+.site-foot .container { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.site-foot a { color: var(--primary); }
+
+/* ---------- Gombok ---------- */
+.btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-height: 44px; padding: 0 20px;
+    border: 1px solid transparent; border-radius: var(--radius);
+    font-weight: 600; font-size: 17px; text-decoration: none; cursor: pointer;
+}
+.btn-primary { background: var(--primary); color: #fff; }
+.btn-primary:hover { background: var(--primary-dark); }
+.btn-secondary { background: var(--surface); color: var(--text); border-color: var(--line); }
+.btn-secondary:hover { background: var(--bg); }
+.btn-danger { background: var(--danger); color: #fff; }
+.btn-danger-outline { background: var(--surface); color: var(--danger); border-color: #f1b3ad; }
+.btn-danger-outline:hover { background: var(--danger-light); }
+.btn-lg { min-height: var(--touch); padding: 0 32px; font-size: 19px; }
+.btn-sm { min-height: 40px; padding: 0 14px; font-size: 15px; }
+.btn.loading { opacity: .6; pointer-events: none; }
+
+/* ---------- Doboz ---------- */
+.panel-box { background: var(--surface); border: 1px solid var(--line-light); border-radius: var(--radius); padding: 28px; }
+.box-head { margin-bottom: 20px; }
+.box-head h2 { font-size: 22px; }
+.box-head p { color: var(--muted); margin-top: 4px; font-size: 16px; }
+.box-head.row { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+
+/* =========================================================
+   ŰRLAP
+   ========================================================= */
+.page-title { padding: 36px 0 24px; }
+.eyebrow { color: var(--accent); font-weight: 700; font-size: 15px; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 4px; }
+.page-title h1 { font-size: 34px; color: var(--primary-dark); }
+.lead { color: var(--muted); margin-top: 8px; max-width: 60ch; }
+
+.reg-form { padding: 0; }
+.form-section { padding: 28px; border-bottom: 1px solid var(--line-light); }
+.form-section h2 { font-size: 21px; display: flex; align-items: center; gap: 10px; margin-bottom: 18px; }
+.step {
+    display: inline-grid; place-items: center; width: 30px; height: 30px; border-radius: 50%;
+    background: var(--primary); color: #fff; font-size: 16px;
+}
+
+.field { border: 0; margin: 0 0 20px; padding: 0; min-width: 0; }
+.field:last-child { margin-bottom: 0; }
+.field > label, .field > legend { display: block; padding: 0; font-weight: 600; margin-bottom: 8px; }
+.field > legend h2 { margin-bottom: 4px; }
+.help { color: var(--muted); font-size: 16px; margin-bottom: 14px; }
+
+.field input[type="text"], .field input[type="password"] {
+    width: 100%; height: var(--touch); padding: 0 14px;
+    border: 1px solid var(--line); border-radius: var(--radius);
+    background: #fff; font-size: 18px;
+}
+.field input[type="text"]:focus, .field input[type="password"]:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-light); }
+
+/* Jelölőnégyzetek / rádiógombok – nagy érintési felület */
+.check-list { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.check-row, .radio-row {
+    display: flex; align-items: center; gap: 14px;
+    min-height: var(--touch); padding: 10px 16px;
+    border: 1px solid var(--line); border-radius: var(--radius);
+    background: #fff; cursor: pointer;
+}
+.check-row:hover, .radio-row:hover { border-color: #9ca3af; }
+.check-row input, .radio-row input { width: 22px; height: 22px; margin: 0; flex-shrink: 0; accent-color: var(--primary); }
+.check-row:has(input:checked), .radio-row:has(input:checked) { border-color: var(--primary); background: var(--primary-light); }
+
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.radio-group { display: flex; flex-direction: column; gap: 10px; }
+
+.form-actions { padding: 24px 28px; display: flex; align-items: center; justify-content: space-between; gap: 16px; background: #fafafa; border-radius: 0 0 var(--radius) var(--radius); }
+.form-actions .help { margin: 0; }
+
+.error-msg { display: none; margin-top: 8px; color: var(--danger); font-size: 15px; font-weight: 600; }
+.field.invalid .error-msg { display: block; }
+.field.invalid input[type="text"] { border-color: var(--danger); }
+.field.invalid .check-row, .field.invalid .radio-row { border-color: #f1b3ad; }
+
+.alert { padding: 14px 18px; border-radius: var(--radius); margin-bottom: 16px; font-weight: 600; }
+.alert-error { background: var(--danger-light); color: var(--danger); border: 1px solid #f1b3ad; }
+
+/* ---------- Belépés ---------- */
+.login-wrap { max-width: 460px; }
+.login-box { margin-top: 56px; }
+.login-box h1 { font-size: 26px; color: var(--primary-dark); margin-bottom: 6px; }
+.btn-block { width: 100%; margin-top: 8px; }
+.head-actions { display: flex; gap: 10px; }
+.head-actions form { margin: 0; }
+
+/* ---------- Sikeres oldal ---------- */
+.success-box { margin-top: 48px; text-align: center; padding: 40px 28px; }
+.success-mark { width: 64px; height: 64px; margin: 0 auto 18px; border-radius: 50%; background: #e7f6ec; display: grid; place-items: center; }
+.success-mark svg { width: 34px; height: 34px; fill: none; stroke: var(--ok); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.success-box h1 { font-size: 30px; color: var(--primary-dark); margin-bottom: 8px; }
+.success-box > p { color: var(--muted); margin-bottom: 28px; }
+.success-box .help { margin: 18px 0 0; }
+
+/* =========================================================
+   ADMIN
+   ========================================================= */
+.page-admin .container { max-width: 1200px; }
+.admin-title { padding-top: 28px; }
+.admin-title h1 { font-size: 28px; color: var(--primary-dark); margin-bottom: 16px; }
+
+.tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--line); overflow-x: auto; }
+.tab {
+    min-height: 48px; padding: 0 18px; border: 0; background: none; cursor: pointer;
+    font-weight: 600; color: var(--muted); border-bottom: 3px solid transparent; margin-bottom: -1px; white-space: nowrap;
+}
+.tab:hover { color: var(--text); }
+.tab.active { color: var(--primary); border-bottom-color: var(--primary); }
+.count { display: inline-block; margin-left: 4px; padding: 0 8px; border-radius: 10px; background: var(--line-light); color: var(--text); font-size: 14px; }
+
+.admin-main { padding-top: 24px; }
+.panel { display: none; }
+.panel.active { display: block; }
+
+.stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 20px; }
+.stat { background: var(--surface); border: 1px solid var(--line-light); border-left: 4px solid var(--primary); border-radius: var(--radius); padding: 18px 20px; }
+.stat-label { color: var(--muted); font-size: 16px; }
+.stat-value { font-size: 38px; font-weight: 700; line-height: 1.2; }
+.stat-sub { color: var(--muted); font-size: 14px; }
+
+.legend { display: flex; gap: 16px; font-size: 15px; color: var(--muted); }
+.dot { display: inline-block; width: 12px; height: 12px; margin-right: 6px; vertical-align: -1px; }
+.dot-main { background: var(--primary); }
+.dot-accent { background: #8fb0e8; }
+.bars { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
+.bars li { display: grid; grid-template-columns: minmax(220px, 320px) 1fr 64px; gap: 16px; align-items: center; }
+.bar-label { font-size: 16px; }
+.bar-track { position: relative; height: 22px; background: var(--bg); }
+.bar { position: absolute; left: 0; top: 0; bottom: 0; }
+.bar-all { background: var(--primary); }
+.bar-sub { background: #8fb0e8; top: 6px; bottom: 6px; }
+.bar-num { text-align: right; font-weight: 700; }
+.bar-num small { color: var(--muted); font-weight: 400; }
+
+.table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.data-table { width: 100%; border-collapse: collapse; }
+.data-table th {
+    text-align: left; font-size: 14px; font-weight: 700; color: var(--muted);
+    padding: 10px 12px; border-bottom: 2px solid var(--line); white-space: nowrap;
+}
+.data-table td { padding: 12px; border-bottom: 1px solid var(--line-light); vertical-align: middle; font-size: 16px; }
+.data-table tbody tr:nth-child(even) { background: #fafafa; }
+.data-table .num { text-align: center; font-variant-numeric: tabular-nums; }
+.data-table td.num { font-weight: 600; }
+
+.nev-cell { font-weight: 600; white-space: nowrap; }
+.nev-cell small { display: block; font-weight: 400; color: var(--muted); font-size: 13px; }
+.tags { display: flex; flex-wrap: wrap; gap: 4px; max-width: 340px; }
+.tag { padding: 2px 8px; border: 1px solid var(--line); border-radius: 4px; font-size: 14px; white-space: nowrap; background: #fff; }
+.badge-yes { font-weight: 700; color: var(--primary); }
+.muted { color: var(--muted); }
+.date-cell { color: var(--muted); white-space: nowrap; font-size: 15px !important; }
+.act-cell { text-align: right; }
+.act-cell form { margin: 0; }
+
+.toolbar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 16px; }
+.search {
+    flex: 1 1 260px; height: 46px; padding: 0 14px;
+    border: 1px solid var(--line); border-radius: var(--radius); font-size: 16px;
+}
+.filter-chips { display: flex; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+.fchip { min-height: 44px; padding: 0 16px; border: 0; border-right: 1px solid var(--line); background: #fff; cursor: pointer; font-size: 16px; }
+.fchip:last-child { border-right: 0; }
+.fchip.active { background: var(--primary); color: #fff; }
+.select { height: 46px; padding: 0 12px; border: 1px solid var(--line); border-radius: var(--radius); background: #fff; font-size: 16px; max-width: 100%; }
+.table-foot { margin-top: 14px; color: var(--muted); font-size: 15px; }
+.empty { text-align: center; padding: 40px 16px; color: var(--muted); }
+
+.modal { position: fixed; inset: 0; z-index: 50; display: grid; place-items: center; padding: 16px; background: rgba(17, 24, 39, .5); }
+.modal-box { width: 100%; max-width: 440px; background: #fff; border-radius: var(--radius); padding: 26px; }
+.modal-box h3 { font-size: 22px; margin-bottom: 10px; }
+.modal-box p { color: var(--muted); }
+.modal-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 24px; }
+
+.toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); z-index: 60; background: var(--text); color: #fff; padding: 12px 20px; border-radius: var(--radius); font-size: 16px; }
+
+/* =========================================================
+   Álló tablet (≤ 1024 px)
+   ========================================================= */
+@media (max-width: 1024px) {
+    .stat-grid { grid-template-columns: repeat(2, 1fr); }
+    .bars li { grid-template-columns: 1fr 56px; gap: 4px 12px; }
+    .bar-label { grid-column: 1 / -1; }
+
+    /* Jelentkezők: táblázat helyett listaelemek */
+    #jelentkezoTabla thead { display: none; }
+    #jelentkezoTabla, #jelentkezoTabla tbody { display: block; }
+    #jelentkezoTabla tbody tr {
+        display: grid; grid-template-columns: 1fr auto; gap: 6px 16px; align-items: center;
+        padding: 16px 4px; border-bottom: 1px solid var(--line-light); background: none;
+    }
+    #jelentkezoTabla td { display: block; padding: 0; border: 0; }
+    #jelentkezoTabla td:nth-child(1) { grid-column: 1; grid-row: 1; }
+    #jelentkezoTabla td:nth-child(6) { grid-column: 2; grid-row: 1; }
+    #jelentkezoTabla td:nth-child(2),
+    #jelentkezoTabla td:nth-child(3) { grid-column: 1 / -1; }
+    #jelentkezoTabla td:nth-child(2) { color: var(--muted); }
+    #jelentkezoTabla td:nth-child(4),
+    #jelentkezoTabla td:nth-child(5) { grid-column: 1 / -1; font-size: 15px; }
+    #jelentkezoTabla td:nth-child(5)::before { content: "Végzős: "; color: var(--muted); }
+    #jelentkezoTabla .tags { max-width: none; }
+}
+
+/* ---------- Telefon (≤ 640 px) ---------- */
+@media (max-width: 640px) {
+    body { font-size: 17px; }
+    .container { padding: 0 16px; }
+    .site-head-inner { padding: 12px 16px; flex-wrap: wrap; }
+    .brand-name { font-size: 17px; }
+    .logo { height: 44px; }
+    .logo-placeholder { width: 44px; height: 44px; font-size: 16px; }
+    .page-title h1 { font-size: 28px; }
+    .form-section, .form-actions, .panel-box { padding: 20px; }
+    .reg-form { padding: 0; }
+    .check-list, .two-col { grid-template-columns: 1fr; }
+    .form-actions { flex-direction: column; align-items: stretch; }
+    .stat-value { font-size: 30px; }
+}
